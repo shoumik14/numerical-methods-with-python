@@ -11,3 +11,19 @@ for i in range(size):
 A=np.array(A).reshape(size,size)
 
 print(A)
+X=[]
+print("enter the initial guess vector:")
+for i in range(size):
+    temp=float(input())
+    X.append(temp)
+X=np.array(X).reshape(size,1)
+
+while(ch!='n'):
+    P=A@X
+    l=P[size-1,0]
+    print(f"eigen value approximation= {l}")
+    X=P*(1/l)
+    print("corrosponding eigen vector approximation: ")
+    print(X)
+
+    ch=input("another iteration? ")
