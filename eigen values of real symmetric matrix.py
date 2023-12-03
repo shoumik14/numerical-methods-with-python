@@ -1,7 +1,7 @@
 import numpy as np
 
 size=int(input("Enter the order of the matrix: "))
-A,ch=[],""
+A,ch,p_matrices=[],"",[]
 
 for i in range(size):
     for j in range(size):
@@ -52,6 +52,7 @@ while ch!='n':
 
     print("The P matrix is, ")
     print(P)
+    p_matrices.append(P)
 
     A=np.transpose(P)@A@P
     A=A.round(4)
@@ -62,3 +63,10 @@ while ch!='n':
 print("The eigen values are: ")
 for i in range(size):
     print(A[i,i])
+
+eigen_vectors=np.identity(size)
+
+for X in p_matrices:
+    eigen_vectors=eigen_vectors@X
+print("And eigen vectors are the columns of the matrix given below, respectively: ")
+print(eigen_vectors)
