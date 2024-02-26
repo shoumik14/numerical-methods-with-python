@@ -28,11 +28,11 @@ while ch!='n':
     I,J=maximum[1],maximum[2]
 
     if A[I,I]==A[J,J] and A[I,J]>0:
-        theta=round(np.pi/4,4)
+        theta=np.pi/4
     elif A[I,I]==A[J,J] and A[I,J]<0:
-        theta=round(-np.pi/4,4)
+        theta=-np.pi/4
     else:
-        theta=round(0.5*np.arctan((2*A[I,J])/(A[I,I]-A[J,J])),4)
+        theta=0.5*np.arctan((2*A[I,J])/(A[I,I]-A[J,J]))
     print(f"rotation angle is {theta}")
 
     #constructing the P matrix
@@ -42,11 +42,11 @@ while ch!='n':
             if i==j and j!=I and j!=J:
                 P[i,j]=1
             elif i==j==I or i==j==J:
-                P[i,j]=round(np.cos(theta),4)
+                P[i,j]=np.cos(theta)
             elif i==I and j==J:
-                P[i,j]=round(-np.sin(theta),4)
+                P[i,j]=-np.sin(theta)
             elif i==J and j==I:
-                P[i,j]=round(np.sin(theta),4)
+                P[i,j]=np.sin(theta)
             else:
                 P[i,j]=0
 
@@ -55,7 +55,6 @@ while ch!='n':
     p_matrices.append(P)
 
     A=np.transpose(P)@A@P
-    A=A.round(4)
     print(A)
 
     ch=input("another iteration? ")
